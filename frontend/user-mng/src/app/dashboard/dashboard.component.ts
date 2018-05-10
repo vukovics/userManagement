@@ -16,12 +16,7 @@ export class DashboardComponent implements OnInit {
     private modalService: NgbModal) {
   }
   isEdit: boolean;
-  user = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: ''
-  };
+  user = {};
   userInfo: Object;
   userGroups: any;
 
@@ -59,6 +54,7 @@ export class DashboardComponent implements OnInit {
 
   createUser(content) {
     this.isEdit = false;
+    this.user = {};
     this.modalService.open(content).result.then((result) => {
       if (result !== 'close') {
         this.save(result);
@@ -103,7 +99,6 @@ export class DashboardComponent implements OnInit {
       this.toastr.success('User Deleted!', 'Success!');
     }, error => this.toastr.error('User is in group!', 'Error!'));
   }
-
 
   getUsers() {
     this.users.getUsers().subscribe(data => {
