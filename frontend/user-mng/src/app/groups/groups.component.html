@@ -2,7 +2,10 @@
   <div class="btn-group" role="group">
     <button class="btn btn-primary addBtn" (click)="open(content)">Create new group</button>
   </div>
-  <table class="table">
+  <div *ngIf="allGroups.length == 0">
+    <p>Create your first group</p>
+  </div>
+  <table class="table" *ngIf="allGroups.length > 0">
     <thead>
       <tr>
         <th>Name</th>
