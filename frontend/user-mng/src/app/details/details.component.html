@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <p>
+        User groups
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Group name</th>
+            <th>Add to group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userGroup of userGroupsInfo.userGroups">
+            <td>{{userGroup.group_name}}</td>
+            <td>
+              <button (click)="removeUserFromGroup(userGroup)" class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm">
+      <p>
+        All groups
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Group name</th>
+            <th>Users in group</th>
+            <th>Add to group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let allGroups of userGroupsInfo.groups">
+            <td>{{allGroups.group_name}}</td>
+            <td>
+              <span class="label label-primary">{{allGroups.user_count}}</span>
+            </td>
+            <td>
+              <button (click)="addUserToGroup(allGroups)" class="btn btn-primary">Add</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

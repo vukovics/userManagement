@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="col-sm">
+    <div class="btn-group" role="group">
+      <button class="btn btn-primary addBtn" (click)="open(content)">Create new user</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Delete</th>
+          <th>Edit</th>
+          <th>Add to group</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUsers">
+          <td>{{user.firstname}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            <button (click)="open(content, user)" class="btn btn-success">Edit</button>
+          </td>
+          <td>
+            <button (click)="open(delete, user, 'delete')" class="btn btn-danger">Delete</button>
+          </td>
+          <td>
+            <button routerLink="/details/{{user.id}}" class="btn btn-warning">User details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <p class="modal-title" *ngIf="!isEdit;else other_content">Create new user</p>
+    <ng-template #other_content>Edit user</ng-template>
+    <button type="button" class="close" aria-label="Close" (click)="c('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form name="createEditUser" #createEditUser="ngForm">
+      <div class="form-group">
+        <label>Firstname</label>
+        <input type="text" name="firstname" [(ngModel)]="user.firstname" placeholder="{{firstname}}" #name="ngModel" required />
+        <div [hidden]="user.firstname" class="alert alert-danger">
+          Firstname is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Lastname</label>
+        <input type="text" name="lastname" [(ngModel)]="user.lastname" placeholder="{{lastname}}" #name="ngModel" required />
+        <div [hidden]="user.lastname" class="alert alert-danger">
+          Lastname is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" [(ngModel)]="user.email" placeholder="{{email}}" #name="ngModel" required />
+        <div [hidden]="user.email" class="alert alert-danger">
+          Email is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="user.password" placeholder="{{password}}" #name="ngModel" required />
+        <div [hidden]="user.password" class="alert alert-danger">
+          Password is required
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('close')">Close</button>
+    <button type="button" class="btn btn-outline-dark" [disabled]="createEditUser.invalid" (click)="c(user)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #delete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <p class="modal-title">Delete group</p>
+    <button type="button" class="close" aria-label="Close" (click)="c('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete user {{userInfo.firstname}} {{userInfo.lastname}}?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('close')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c(groupName)">Delete</button>
+  </div>
+</ng-template>
