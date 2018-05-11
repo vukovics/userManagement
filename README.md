@@ -13,7 +13,7 @@ Backend [Laravel PHP Framework](https://laravel.com/)
 ```php artisan serve``` - that command will start Laravel development server on host :8000
 
 Frontend [Angular](https://angular.io/)
-
+- Install Angular CLI - https://cli.angular.io/
 - Go to frontend folder and then in user-mng
 - In terminal type ```npm install``` to install all dependencies
 - After that, type ```ng serve```, this will start Angular live development server on host :4200
