@@ -17,13 +17,16 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { GroupsComponent } from './groups/groups.component';
 import { DetailsComponent } from './details/details.component';
+import { FilterPipe} from './filters/filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     GroupsComponent,
-    DetailsComponent
+    DetailsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

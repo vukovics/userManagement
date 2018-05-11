@@ -3,6 +3,14 @@
     <div class="btn-group" role="group">
       <button class="btn btn-primary addBtn" (click)="open(content)">Create new user</button>
     </div>
+    <div class="form-group">
+      <input type="text" class="form-control" 
+      id="exampleInputSearch" 
+      [(ngModel)]="searchText"
+      aria-describedby="lastname" 
+      name="search" 
+      placeholder="Search by Firstname">
+    </div>
     <div *ngIf="allUsers.length === 0">
       Please create new user.
     </div>
@@ -18,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of allUsers">
+        <tr *ngFor="let user of allUsers | filter : searchText">
           <td>{{user.firstname}}</td>
           <td>{{user.lastname}}</td>
           <td>{{user.email}}</td>

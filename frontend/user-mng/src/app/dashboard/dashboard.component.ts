@@ -3,6 +3,7 @@ import { UserService } from '../services/userService/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FilterPipe} from '../filters/filter.pipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,9 +20,11 @@ export class DashboardComponent implements OnInit {
   user = {};
   userInfo: Object;
   userGroups: any;
+  search: String;
 
   ngOnInit() {
     this.getUsers();
+    this.search = '';
   }
 
   open(content, user, isDelete) {
